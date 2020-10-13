@@ -1,0 +1,32 @@
+
+.mockTable {
+   border-width: 1px;
+   padding: 1px;
+   background-color: white;
+}
+
+.thMockHeader {
+   background-color: lightgreen;
+   color: black;
+}
+
+.trMockRow0 {
+   background-color: lightgrey;
+   color: black;
+}
+
+.trMockRow1 {
+   background-color: lightblue;
+   color: black;
+}
+
+.error {
+   color: red;
+}
+
+.Favorites {
+   display: none;
+}
+
+.FilterCheckBoxes {
+}

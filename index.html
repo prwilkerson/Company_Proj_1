@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 
+Guidelines
+
+You will have to submit this task with git (you can use Github or Bitbucket). After you are finishing make sure the code
+is pushed and send an email/skype with a link.
+
+The code should be runnable on Chrome (don't warry about the rest), NPM start or something simple for run it.
+
+Stack: React, Redux, Rxjs (or similar lib), ES6/ES7 or Typescript
+
+We are looking for best practices, maintainability, knowledge general programming skills/abilities
+
+You have this model
+
+interface Asset {
+    id: number
+    assetName: string; // "USD", Samsung Electronics Co Ltd : "SSNLF"
+    price: number; // asset current price relative to USD
+    lastUpdate: number; // unix timestamp
+    type: "Currency" | "Stock"; // asset type Currency (e.g. USD, EUR...) or Stock (Samsung, Google)
+}
+Mock
+
+Creates 400 random assets, 200 currencies and 200 stocks (just the types is iterating, you don't need real assets) id
+1-400
+
+Create a stream from those 400 assets that fires 1 update per secound for each asset:
+
+price must be changed each update by -1 to 1 and with the current timestamp, the rest will stay the same
+you can find the mock at mock.js It exports a mock, rxjs observable with the required stream
+
+This is not a starter or boilerplate it is just to confirm that the mock isn't broken You still can boot your project
+how ever you want
+
+see the mock running
+
+npm/yarn install npm test
+
+You should see console log with the object on the steam
+
+Create the following app using this stream:
+
+Show a table with all of the assets
+The prices should be updating every second as described above
+Allow to sort for each one of the model fields
+Allow to filter for each one of the model fields
+
+Optional
+Add to favorites button
+favorites should be persist to localstorage
+favorites should be pin to the top of the table
+ -->
+<html>
+   <head>
+      <title>Mock example</title>
+      <link rel="stylesheet" href="styles.css">
+      <script defer="defer" type="text/javascript" src="Solution.js"></script>
+   </head>
+   <body onload="main();" onunload+"unload();">
+      <noscript><span class="error">Your browser does not support JavaScript.</span></noscript>
+      <div class="FilterCheckBoxes">
+         <p>Filter out the following columns:</p>
+         <input type="checkbox" id="chkBx0" checked="checked" onclick="onChkBx(0);"></input><label for="chkBx0">ID</label>&nbsp;
+         <input type="checkbox" id="chkBx1" checked="checked" onclick="onChkBx(1);"></input><label for="chkBx1">Asset Name</label>&nbsp;
+         <input type="checkbox" id="chkBx2" checked="checked" onclick="onChkBx(2);"></input><label for="chkBx2">Price</label>&nbsp;
+         <input type="checkbox" id="chkBx3" checked="checked" onclick="onChkBx(3);"></input><label for="chkBx3">Last Update</label>&nbsp;
+         <input type="checkbox" id="chkBx4" checked="checked" onclick="onChkBx(4);"></input><label for="chkBx4">Type</label>
+         <br />
+         <br />
+         <input type="checkbox" id="chkBxRun" onclick="onRun();"></input><label for="chkBxRun">Run</label>
+      </div>
+      <br />
+      <p>Mock Data:</p>
+      <table class="mockTable">
+         <tr>
+            <td>
+               <div class="Favorites">
+                  <table id="table0" class="mockTable">
+                     <tr class="thMockHeader">
+                        <th><span id="mockHead0">Fav</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+            <td>
+               <div id="mockDiv0">
+                  <table id="table1" class="mockTable">
+                     <tr class="thMockHeader">
+                        <th onclick="onSort(1);"><span id="mockHead1">ID&nbsp;&darr;</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+            <td>
+               <div id="mockDiv1">
+                  <table id="table2" class="mockTable">
+                     <tr class="thMockHeader">
+                        <th onclick="onSort(2);"><span id="mockHead2">Asset Name</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+            <td>
+               <div id="mockDiv2">
+                  <table id="table3" class="mockTable">
+                     <tr class="thMockHeader">
+                        <th onclick="onSort(3);"><span id="mockHead3">Price</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+            <td>
+               <div id="mockDiv3">
+                  <table id="table4" class="mockTable">
+                     <tr class="thMockHeader">
+                        <th onclick="onSort(4);"><span id="mockHead4">Last Update</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+            <td>
+               <div id="mockDiv4" class="mockTable">
+                  <table id="table5">
+                     <tr class="thMockHeader">
+                        <th onclick="onSort(5);"><span id="mockHead5">Type</span></th>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>
